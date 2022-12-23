@@ -8,8 +8,7 @@ builder.Services.Configure<TourAppDatabaseSettings>(
 
 
 // Add services to the container.
-builder.Services.AddSingleton<IDriver, DriverModel>();
-builder.Services.AddSingleton<IRepository<DriverModel>, DriverRepository>();
+builder.Services.AddSingleton<IDriverRepository, DriverRepository>();
 builder.Services.AddSingleton<IRepository<TourModel>, TourRepository>();
 
 builder.Services.AddControllers()

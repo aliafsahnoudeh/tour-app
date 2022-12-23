@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace server.Services;
 
-public class DriverRepository : IRepository<DriverModel>
+public class DriverRepository : IDriverRepository
 {
     private readonly IMongoCollection<DriverModel> _driversCollection;
 
@@ -23,6 +23,9 @@ public class DriverRepository : IRepository<DriverModel>
 
     public async Task<List<DriverModel>> GetAsync() =>
         await _driversCollection.Find(_ => true).ToListAsync();
+
+    public async Task<List<DriverModel>> GetByLocationAsync(string location) =>
+        await _driversCollection.Find(x => x.Location == location).ToListAsync();
 
     public async Task<DriverModel?> GetAsync(string id) =>
         await _driversCollection.Find(x => x.Id == id).FirstOrDefaultAsync();

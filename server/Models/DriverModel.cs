@@ -1,6 +1,6 @@
 namespace server.Models
 {
-    public class DriverModel : BaseModel, IDriver
+    public class DriverModel : BaseModel
     {       
         public string? FirstName { get; set; }
         public string? LastName { get; set; }

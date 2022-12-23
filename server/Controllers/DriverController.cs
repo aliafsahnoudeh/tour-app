@@ -5,13 +5,13 @@ using server.Services;
 namespace server.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("driver")]
 public class DriverController : ControllerBase
 {
     private readonly ILogger<DriverController> _logger;
-    private readonly IRepository<DriverModel> _repository;
+    private readonly IDriverRepository _repository;
 
-    public DriverController(ILogger<DriverController> logger, IRepository<DriverModel> repository)
+    public DriverController(ILogger<DriverController> logger, IDriverRepository repository)
     {
         _logger = logger;
         _repository = repository;
@@ -27,6 +27,19 @@ public class DriverController : ControllerBase
     public async Task<ActionResult<DriverModel>> Get(string id)
     {
         var driver = await _repository.GetAsync(id);
+
+        if (driver is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(driver);
+    }
+
+    [HttpGet("location/{location}")]
+    public async Task<ActionResult<DriverModel>> GetByLocation(string location)
+    {
+        var driver = await _repository.GetByLocationAsync(location);
 
         if (driver is null)
         {

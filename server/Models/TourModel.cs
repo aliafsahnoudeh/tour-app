@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace server.Models
 {
-    public class TourModel : BaseModel, ITour
+    public class TourModel : BaseModel
     {
         public string? CustomerName { get; set; }
         // TODO proper Date
@@ -16,7 +16,7 @@ namespace server.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId driver_id { get; set; }
 
-        public virtual IDriver? Driver { get; set; }
+        public virtual DriverModel? Driver { get; set; }
 
         public string DriverId
         {

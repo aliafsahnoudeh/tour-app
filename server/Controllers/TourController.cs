@@ -5,7 +5,7 @@ using server.Services;
 namespace server.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("tour")]
 public class TourController : ControllerBase
 {
     private readonly ILogger<TourController> _logger;
