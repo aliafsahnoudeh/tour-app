@@ -1,7 +1,7 @@
-import IApiService from './IApiService';
-import IDriverService from './IDriverService';
+import type IApiService from "./IApiService";
+import type IDriverService from "./IDriverService";
 
-import DriverModel from '../types/DriverModel';
+import type DriverModel from "../types/DriverModel";
 
 class DriverService implements IDriverService {
   private readonly apiService: IApiService;
@@ -11,25 +11,28 @@ class DriverService implements IDriverService {
   }
 
   public async fetch(): Promise<Array<DriverModel>> {
-    const {
-      body,
-    } = await this.apiService.request(
-      'GET',
-      `/driver`,
-      {},
-      {},
-    );
+    const { body } = await this.apiService.request("GET", `/driver`, {}, {});
     return body;
   }
 
   public async fetchByLocation(location: string): Promise<Array<DriverModel>> {
-    const {
-      body,
-    } = await this.apiService.request(
-      'GET',
+    const { body } = await this.apiService.request(
+      "GET",
       `/driver/location/${location}`,
       {},
+      {}
+    );
+    return body;
+  }
+
+  public async add(payload: DriverModel): Promise<void> {
+    const { body } = await this.apiService.request(
+      "POST",
+      `/driver`,
       {},
+      {
+        body: payload,
+      }
     );
     return body;
   }

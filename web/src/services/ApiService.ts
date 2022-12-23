@@ -1,4 +1,4 @@
-import IApiService from './IApiService';
+import type IApiService from "./IApiService";
 
 class ApiService implements IApiService {
   private readonly baseUrl: string | undefined;
@@ -11,23 +11,23 @@ class ApiService implements IApiService {
     method: string,
     url: string,
     query: any = null,
-    inputOptions: any = {},
+    inputOptions: any = {}
   ): Promise<any> {
     const options = JSON.parse(JSON.stringify(inputOptions));
 
-    if ('body' in options && options.body instanceof Object) {
+    if ("body" in options && options.body instanceof Object) {
       options.body = JSON.stringify(options.body);
       options.headers = {
         ...options.headers,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       };
     }
 
-    const search = query ? `?${new URLSearchParams(query).toString()}` : '';
+    const search = query ? `?${new URLSearchParams(query).toString()}` : "";
 
     const response = await fetch(`${this.baseUrl}${url}${search}`, {
       method,
-      credentials: 'include',
+      credentials: "include",
       ...options,
     });
     if (response.ok) {

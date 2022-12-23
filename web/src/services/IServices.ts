@@ -1,7 +1,7 @@
-import IDriverService from "./IDriverService";
+import type IDriverService from "./IDriverService";
 
 type IServices = {
-    driverService: IDriverService
-  };
+  driverService: IDriverService;
+};
 
-  export default IServices
+export default IServices;
