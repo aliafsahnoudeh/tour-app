@@ -1,6 +1,7 @@
 /* eslint-disable vue/multi-word-component-names */
-import { createApp, provide } from "vue";
+import { createApp } from "vue";
 import { createPinia } from "pinia";
+
 import PrimeVue from "primevue/config";
 import Card from "primevue/card";
 import Button from "primevue/button";

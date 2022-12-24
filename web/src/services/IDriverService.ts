@@ -4,6 +4,8 @@ interface IDriverService {
   fetch(): Promise<Array<DriverModel>>;
   fetchByLocation(location: string): Promise<Array<DriverModel>>;
   add(payload: DriverModel): Promise<void>;
+  update(payload: DriverModel): Promise<void>;
+  delete(id: string): Promise<void>;
 }
 
 export default IDriverService;

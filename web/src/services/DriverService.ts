@@ -18,7 +18,7 @@ class DriverService implements IDriverService {
   public async fetchByLocation(location: string): Promise<Array<DriverModel>> {
     const { body } = await this.apiService.request(
       "GET",
-      `/driver/location/${location}`,
+      `driver/location/${location}`,
       {},
       {}
     );
@@ -28,11 +28,33 @@ class DriverService implements IDriverService {
   public async add(payload: DriverModel): Promise<void> {
     const { body } = await this.apiService.request(
       "POST",
-      `/driver`,
+      `driver`,
       {},
       {
         body: payload,
       }
+    );
+    return body;
+  }
+
+  public async update(payload: DriverModel): Promise<void> {
+    const { body } = await this.apiService.request(
+      "PUT",
+      `driver/${payload.Id}`,
+      {},
+      {
+        body: payload,
+      }
+    );
+    return body;
+  }
+
+  public async delete(id: string): Promise<void> {
+    const { body } = await this.apiService.request(
+      "DELETE",
+      `driver/${id}`,
+      {},
+      {}
     );
     return body;
   }

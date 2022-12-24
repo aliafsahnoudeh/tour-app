@@ -33,6 +33,7 @@ export default function useDrivers() {
     try {
       loading.value = true;
       await driverService?.add(payload);
+      // TODO add it with new Id
       drivers.push(payload);
     } catch (error) {
       console.error(error);
@@ -44,8 +45,50 @@ export default function useDrivers() {
   const editDriver = async (payload: DriverModel) => {
     try {
       loading.value = true;
-      await driverService?.add(payload);
-      drivers.push(payload);
+      await driverService?.update(payload);
+      const existed: DriverModel | undefined = drivers.find(
+        (driver: DriverModel) => driver.Id === payload.Id
+      );
+      if (existed !== undefined) {
+        existed.FirstName = payload.FirstName;
+        existed.LastName = payload.LastName;
+        existed.Location = payload.Location;
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const deleteDriver = async (payload: DriverModel) => {
+    try {
+      loading.value = true;
+      await driverService?.delete(payload.Id);
+      const index = drivers.findIndex(
+        (driver: DriverModel) => driver.Id === payload.Id
+      );
+      if (index > -1) {
+        drivers.splice(index, 1);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const deleteDrivers = async (payload: DriverModel[]) => {
+    try {
+      loading.value = true;
+      payload.forEach(async (driver) => {
+        console.log(driver);
+        await driverService?.delete(driver.Id);
+        const index = drivers.findIndex((d: DriverModel) => driver.Id === d.Id);
+        if (index > -1) {
+          drivers.splice(index, 1);
+        }
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -62,5 +105,12 @@ export default function useDrivers() {
     isMounted = false;
   });
 
-  return { loading, drivers, addDriver, editDriver };
+  return {
+    loading,
+    drivers,
+    addDriver,
+    editDriver,
+    deleteDriver,
+    deleteDrivers,
+  };
 }
