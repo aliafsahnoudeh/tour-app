@@ -44,6 +44,7 @@
           required="true"
           autofocus
           :class="{ 'p-invalid': submitted && !store.driver.Location }"
+          @keypress="preventNumericInput"
         />
         <small class="p-error" v-if="submitted && !store.driver?.Location"
           >Location is required.</small
@@ -81,4 +82,11 @@ const emit = defineEmits(["save", "hide"]);
 
 const store = useDriverStore();
 const dialogStore = useDialogsStore();
+
+const preventNumericInput = (event: any) => {
+  const keyCode = event.keyCode ? event.keyCode : event.which;
+  if (keyCode > 47 && keyCode < 58) {
+    event.preventDefault();
+  }
+};
 </script>
