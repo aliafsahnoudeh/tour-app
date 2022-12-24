@@ -25,7 +25,7 @@ class DriverService implements IDriverService {
     return body;
   }
 
-  public async add(payload: DriverModel): Promise<void> {
+  public async add(payload: DriverModel): Promise<DriverModel> {
     const { body } = await this.apiService.request(
       "POST",
       `driver`,

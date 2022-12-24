@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="driver-list">
     <div class="card">
       <Toolbar class="mb-4">
         <template #start>
@@ -118,7 +118,7 @@ const deleteSelectedDrivers = async () => {
 
 const handleDelete = async () => {
   await deleteDriver(store.driver);
-  dialogStore.setDeleteDriversDialog(false);
+  dialogStore.setDeleteDriverDialog(false);
   store.setDriver(undefined);
 };
 
@@ -161,3 +161,9 @@ const handleSave = async () => {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.driver-list {
+  width: 100%;
+}
+</style>

@@ -10,7 +10,8 @@ export default function useDrivers() {
 
   const services = inject<IServices | null>("services");
   let driverService: IDriverService;
-  if (services !== undefined) driverService = services.driverService;
+  if (services !== undefined && services !== null)
+    driverService = services.driverService;
 
   const fetch = async (isMounted: boolean) => {
     try {
@@ -32,9 +33,8 @@ export default function useDrivers() {
   const addDriver = async (payload: DriverModel) => {
     try {
       loading.value = true;
-      await driverService?.add(payload);
-      // TODO add it with new Id
-      drivers.push(payload);
+      const response = await driverService?.add(payload);
+      drivers.push(response);
     } catch (error) {
       console.error(error);
     } finally {

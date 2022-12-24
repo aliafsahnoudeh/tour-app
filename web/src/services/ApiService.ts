@@ -31,7 +31,7 @@ class ApiService implements IApiService {
       ...options,
     });
     if (response.ok) {
-      const noContent = response.status === 201 || response.status === 204;
+      const noContent = response.status === 204;
       return {
         headers: response.headers,
         body: noContent ? undefined : await response.json(),
