@@ -1,4 +1,4 @@
-import DriverModel from "./DriverModel";
+import type DriverModel from "./DriverModel";
 
 type TourModel = {
   Id: string;
@@ -6,7 +6,7 @@ type TourModel = {
   ShipmentDate: string;
   LocationFrom: string;
   LocationTo: string;
-  Driver: DriverModel
+  Driver?: DriverModel;
 };
 
 export default TourModel;

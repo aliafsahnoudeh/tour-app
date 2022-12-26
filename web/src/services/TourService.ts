@@ -11,14 +11,14 @@ class TourService implements ITourService {
   }
 
   public async fetch(): Promise<Array<TourModel>> {
-    const { body } = await this.apiService.request("GET", `/tour`, {}, {});
+    const { body } = await this.apiService.request("GET", `tour`, {}, {});
     return body;
   }
 
-  public async add(newTour: TourModel): Promise<void> {
+  public async add(newTour: TourModel): Promise<TourModel> {
     const { body } = await this.apiService.request(
       "POST",
-      `/tour`,
+      `tour`,
       {},
       {
         body: newTour,
@@ -27,12 +27,26 @@ class TourService implements ITourService {
     return body;
   }
 
-  update(newTour: TourModel): Promise<void> {
-    throw new Error("Method not implemented.");
+  public async update(payload: TourModel): Promise<void> {
+    const { body } = await this.apiService.request(
+      "PUT",
+      `tour/${payload.Id}`,
+      {},
+      {
+        body: payload,
+      }
+    );
+    return body;
   }
 
-  delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+  public async delete(id: string): Promise<void> {
+    const { body } = await this.apiService.request(
+      "DELETE",
+      `tour/${id}`,
+      {},
+      {}
+    );
+    return body;
   }
 }
 

@@ -3,7 +3,7 @@ import type IDriverService from "../services/IDriverService";
 import type IServices from "../services/IServices";
 import type DriverModel from "../types/DriverModel";
 
-export default function useDrivers() {
+export default function useDrivers(fetchOnMount = true) {
   let isMounted = false;
   const loading = ref(false);
   const drivers = reactive<any[]>([]);
@@ -17,6 +17,23 @@ export default function useDrivers() {
     try {
       loading.value = true;
       const response = await driverService?.fetch();
+      drivers.splice(0, drivers.length);
+      response.forEach((word: DriverModel) => {
+        drivers.push(word);
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      if (isMounted) {
+        loading.value = false;
+      }
+    }
+  };
+
+  const fetchByLocation = async (location: string) => {
+    try {
+      loading.value = true;
+      const response = await driverService?.fetchByLocation(location);
       drivers.splice(0, drivers.length);
       response.forEach((word: DriverModel) => {
         drivers.push(word);
@@ -98,7 +115,7 @@ export default function useDrivers() {
 
   onMounted(() => {
     isMounted = true;
-    fetch(isMounted);
+    if (fetchOnMount) fetch(isMounted);
   });
 
   onUnmounted(() => {
@@ -112,5 +129,6 @@ export default function useDrivers() {
     editDriver,
     deleteDriver,
     deleteDrivers,
+    fetchByLocation,
   };
 }
