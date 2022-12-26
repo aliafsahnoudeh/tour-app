@@ -156,7 +156,8 @@ const openNew = () => {
     LocationFrom: "",
     LocationTo: "",
     Driver: undefined,
-    ShipmentDate: "",
+    DriverId: undefined,
+    ShipmentDate: new Date(),
   } as TourModel);
   submitted.value = false;
   dialogStore.setDriverDialog(true);
@@ -185,5 +186,8 @@ const handleSave = async () => {
 <style lang="scss" scoped>
 .tour-list {
   width: 100%;
+}
+.p-toolbar-group-left button {
+  margin-right: 15px;
 }
 </style>

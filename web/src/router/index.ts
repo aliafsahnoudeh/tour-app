@@ -12,8 +12,8 @@ const router = createRouter({
       },
     },
     {
-      path: "/driver",
-      name: "driver",
+      path: "/drivers",
+      name: "drivers",
       component: () => import("../views/Driver.vue"),
       meta: {
         public: true,

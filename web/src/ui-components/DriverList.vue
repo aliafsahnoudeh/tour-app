@@ -166,4 +166,8 @@ const handleSave = async () => {
 .driver-list {
   width: 100%;
 }
+
+.p-toolbar-group-left button {
+  margin-right: 15px;
+}
 </style>

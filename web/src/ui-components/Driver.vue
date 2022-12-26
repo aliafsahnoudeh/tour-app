@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DriverModel from "../types/DriverModel";
+import type DriverModel from "../types/DriverModel";
 
 const props = defineProps<{
   driver: DriverModel;
