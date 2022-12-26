@@ -23,14 +23,8 @@
       </div>
       <div class="field">
         <label for="ShipmentDate">ShipmentDate</label>
-        <InputText
-          id="ShipmentDate"
-          v-if="store.tour"
-          v-model.trim="store.tour.ShipmentDate"
-          required="true"
-          autofocus
-          :class="{ 'p-invalid': submitted && !store.tour.ShipmentDate }"
-        />
+        <Calendar v-if="store.tour" v-model="store.tour.ShipmentDate" />
+
         <small class="p-error" v-if="submitted && !store.tour?.ShipmentDate"
           >ShipmentDate is required.</small
         >
@@ -94,6 +88,7 @@
 
 <script setup lang="ts">
 import { defineEmits, watch, ref } from "vue";
+import type { Ref } from "vue";
 import { useTourStore } from "../store/tour";
 import { useDialogsStore } from "../store/dialogs";
 import useDrivers from "../logical-components/useDrivers";
@@ -129,7 +124,7 @@ watch(
 const handleChange = (event: any) => {
   selectedDriver.value = event.value;
   if (store.tour !== undefined) {
-    // store.tour.Driver = event.value;
+    store.tour.Driver = event.value;
     store.tour.DriverId = event.value.Id;
   }
 };

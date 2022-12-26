@@ -12,6 +12,7 @@ import Toolbar from "primevue/toolbar";
 import Column from "primevue/column";
 import Dialog from "primevue/dialog";
 import Dropdown from "primevue/dropdown";
+import Calendar from "primevue/calendar";
 
 import router from "./router";
 
@@ -32,5 +33,6 @@ app.component("Toolbar", Toolbar);
 app.component("Column", Column);
 app.component("Dialog", Dialog);
 app.component("Dropdown", Dropdown);
+app.component("Calendar", Calendar);
 
 app.mount("#app");

@@ -3,7 +3,7 @@ import type DriverModel from "./DriverModel";
 type TourModel = {
   Id?: string;
   CustomerName: string;
-  ShipmentDate: string;
+  ShipmentDate: Date;
   LocationFrom: string;
   LocationTo: string;
   Driver?: DriverModel;
