@@ -128,6 +128,9 @@ watch(
 
 const handleChange = (event: any) => {
   selectedDriver.value = event.value;
-  if (store.tour !== undefined) store.tour.Driver = event.value;
+  if (store.tour !== undefined) {
+    // store.tour.Driver = event.value;
+    store.tour.DriverId = event.value.Id;
+  }
 };
 </script>

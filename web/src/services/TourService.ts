@@ -16,6 +16,7 @@ class TourService implements ITourService {
   }
 
   public async add(newTour: TourModel): Promise<TourModel> {
+    delete newTour?.Id;
     const { body } = await this.apiService.request(
       "POST",
       `tour`,
