@@ -3,24 +3,30 @@ import type ITourService from "../services/ITourService";
 import type IServices from "../services/IServices";
 import type TourModel from "../types/TourModel";
 
-export default function useTours() {
+export default function useTours(
+  passedTourService: ITourService | undefined = undefined
+) {
   let isMounted = false;
   const loading = ref(false);
   const tours = reactive<any[]>([]);
 
   const services = inject<IServices | null>("services");
-  let tourService: ITourService;
-  if (services !== undefined && services !== null)
-    tourService = services.tourService;
+  const tourService: ITourService | undefined =
+    passedTourService !== undefined
+      ? passedTourService
+      : services !== undefined && services !== null
+      ? services.tourService
+      : undefined;
 
   const fetch = async (isMounted: boolean) => {
     try {
       loading.value = true;
       const response = await tourService?.fetch();
       tours.splice(0, tours.length);
-      response.forEach((word: TourModel) => {
-        tours.push(word);
-      });
+      if (response !== undefined)
+        response.forEach((tour: TourModel) => {
+          tours.push(tour);
+        });
     } catch (error) {
       console.error(error);
     } finally {
@@ -66,6 +72,7 @@ export default function useTours() {
   const deleteTour = async (payload: TourModel) => {
     try {
       loading.value = true;
+      if (!payload.Id) return;
       await tourService?.delete(payload.Id);
       const index = tours.findIndex(
         (tour: TourModel) => tour.Id === payload.Id
@@ -84,7 +91,7 @@ export default function useTours() {
     try {
       loading.value = true;
       payload.forEach(async (tour) => {
-        console.log(tour);
+        if (!tour.Id) return;
         await tourService?.delete(tour.Id);
         const index = tours.findIndex((d: TourModel) => tour.Id === d.Id);
         if (index > -1) {
@@ -108,6 +115,7 @@ export default function useTours() {
   });
 
   return {
+    fetch,
     loading,
     tours,
     addTour,

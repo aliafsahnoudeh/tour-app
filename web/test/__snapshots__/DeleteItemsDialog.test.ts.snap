@@ -1,0 +1,51 @@
+// Vitest Snapshot v1
+
+exports[`DeleteItemsDialog.test > match the default snapshot 1`] = `
+<dialog-stub
+  appendto="body"
+  autozindex="true"
+  basezindex="0"
+  closable="true"
+  closeicon="pi pi-times"
+  closeonescape="true"
+  dismissablemask="false"
+  draggable="true"
+  header="Confirm"
+  keepinviewport="true"
+  maximizable="false"
+  maximizeicon="pi pi-window-maximize"
+  minimizeicon="pi pi-window-minimize"
+  minx="0"
+  miny="0"
+  modal="true"
+  position="center"
+  showheader="true"
+  style="width: 450px;"
+  visible="false"
+/>
+`;
+
+exports[`DeleteItemsDialog.test > show the dialog when DeleteItemsDialog is true 1`] = `
+<dialog-stub
+  appendto="body"
+  autozindex="true"
+  basezindex="0"
+  closable="true"
+  closeicon="pi pi-times"
+  closeonescape="true"
+  dismissablemask="false"
+  draggable="true"
+  header="Confirm"
+  keepinviewport="true"
+  maximizable="false"
+  maximizeicon="pi pi-window-maximize"
+  minimizeicon="pi pi-window-minimize"
+  minx="0"
+  miny="0"
+  modal="true"
+  position="center"
+  showheader="true"
+  style="width: 450px;"
+  visible="true"
+/>
+`;

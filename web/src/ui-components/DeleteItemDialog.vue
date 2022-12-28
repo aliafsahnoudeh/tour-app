@@ -1,6 +1,6 @@
 <template>
   <Dialog
-    v-model:visible="dialogStore.deleteDriverDialog"
+    v-model:visible="dialogStore.deleteItemDialog"
     :style="{ width: '450px' }"
     header="Confirm"
     :modal="true"
@@ -18,7 +18,7 @@
         label="No"
         icon="pi pi-times"
         class="p-button-text"
-        @click="dialogStore.setDeleteDriverDialog(false)"
+        @click="dialogStore.setDeleteItemDialog(false)"
       />
       <Button
         label="Yes"

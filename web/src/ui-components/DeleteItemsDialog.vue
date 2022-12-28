@@ -1,9 +1,10 @@
 <template>
   <Dialog
-    v-model:visible="dialogStore.deleteDriversDialog"
+    v-model:visible="dialogStore.deleteItemsDialog"
     :style="{ width: '450px' }"
     header="Confirm"
     :modal="true"
+    ref="delete_items_dialog"
   >
     <div class="confirmation-content">
       <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
@@ -14,7 +15,7 @@
         label="No"
         icon="pi pi-times"
         class="p-button-text"
-        @click="dialogStore.deleteDriversDialog = false"
+        @click="dialogStore.deleteItemsDialog = false"
       />
       <Button
         label="Yes"

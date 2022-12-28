@@ -88,14 +88,12 @@
 
 <script setup lang="ts">
 import { defineEmits, watch, ref } from "vue";
-import type { Ref } from "vue";
 import { useTourStore } from "../store/tour";
 import { useDialogsStore } from "../store/dialogs";
 import useDrivers from "../logical-components/useDrivers";
 import type DriverModel from "../types/DriverModel";
 
 const props = defineProps<{
-  driverDialog: boolean;
   submitted: boolean;
 }>();
 

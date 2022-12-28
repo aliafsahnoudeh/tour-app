@@ -93,31 +93,25 @@
       </DataTable>
     </div>
 
-    <TourDialog
-      :driverDialog="dialogStore.driverDialog"
-      :submitted="submitted"
-      @save="handleSave"
-    />
+    <TourDialog v-if="dialogStore" :submitted="submitted" @save="handleSave" />
 
-    <DeleteDriverDialog @delete="handleDelete" />
+    <DeleteItemDialog @delete="handleDelete" />
 
-    <DeleteDriversDialog @delete="deleteSelectedTours" />
+    <DeleteItemsDialog @delete="deleteSelectedTours" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 
 import TourDialog from "../ui-components/TourDialog.vue";
-import DeleteDriverDialog from "../ui-components/DeleteDriverDialog.vue";
-import DeleteDriversDialog from "../ui-components/DeleteDriversDialog.vue";
+import DeleteItemDialog from "../ui-components/DeleteItemDialog.vue";
+import DeleteItemsDialog from "../ui-components/DeleteItemsDialog.vue";
 
 import type TourModel from "../types/TourModel";
 import useTours from "../logical-components/useTours";
 import { useTourStore } from "../store/tour";
 import { useDialogsStore } from "../store/dialogs";
-
-const emit = defineEmits(["delete"]);
 
 const { tours, addTour, editTour, deleteTour, deleteTours } = useTours();
 const store = useTourStore();
@@ -129,13 +123,13 @@ const submitted = ref<boolean>(false);
 
 const deleteSelectedTours = async () => {
   await deleteTours(selectedTours.value);
-  dialogStore.setDeleteDriversDialog(false);
+  dialogStore.setDeleteItemsDialog(false);
   selectedTours.value.splice(0, selectedTours.value.length);
 };
 
 const handleDelete = async () => {
   if (store.tour !== undefined) await deleteTour(store.tour);
-  dialogStore.setDeleteDriverDialog(false);
+  dialogStore.setDeleteItemDialog(false);
   store.setTour(undefined);
 };
 
@@ -146,7 +140,7 @@ const handleEdit = (payload: TourModel) => {
 
 const confirmDeleteDriver = (payload: TourModel) => {
   store.setTour(payload);
-  dialogStore.setDeleteDriverDialog(true);
+  dialogStore.setDeleteItemDialog(true);
 };
 
 const openNew = () => {
@@ -164,7 +158,7 @@ const openNew = () => {
 };
 
 const confirmDeleteSelected = () => {
-  dialogStore.setDeleteDriversDialog(true);
+  dialogStore.setDeleteItemsDialog(true);
 };
 
 const handleSave = async () => {

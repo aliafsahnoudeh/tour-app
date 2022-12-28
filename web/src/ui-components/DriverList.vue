@@ -81,9 +81,9 @@
       @save="handleSave"
     />
 
-    <DeleteDriverDialog @delete="handleDelete" />
+    <DeleteItemDialog @delete="handleDelete" />
 
-    <DeleteDriversDialog @delete="deleteSelectedDrivers" />
+    <DeleteItemsDialog @delete="deleteSelectedDrivers" />
   </div>
 </template>
 
@@ -91,8 +91,8 @@
 import { ref, defineEmits } from "vue";
 
 import DriverDialog from "../ui-components/DriverDialog.vue";
-import DeleteDriverDialog from "../ui-components/DeleteDriverDialog.vue";
-import DeleteDriversDialog from "../ui-components/DeleteDriversDialog.vue";
+import DeleteItemDialog from "../ui-components/DeleteItemDialog.vue";
+import DeleteItemsDialog from "../ui-components/DeleteItemsDialog.vue";
 
 import type DriverModel from "../types/DriverModel";
 import useDrivers from "../logical-components/useDrivers";
@@ -112,14 +112,16 @@ const submitted = ref<boolean>(false);
 
 const deleteSelectedDrivers = async () => {
   await deleteDrivers(selectedDrivers.value);
-  dialogStore.setDeleteDriversDialog(false);
+  dialogStore.setDeleteItemsDialog(false);
   selectedDrivers.value.splice(0, selectedDrivers.value.length);
 };
 
 const handleDelete = async () => {
-  await deleteDriver(store.driver);
-  dialogStore.setDeleteDriverDialog(false);
-  store.setDriver(undefined);
+  if (store.driver) {
+    await deleteDriver(store.driver);
+    dialogStore.setDeleteItemDialog(false);
+    store.setDriver(undefined);
+  }
 };
 
 const handleEdit = (payload: DriverModel) => {
@@ -129,7 +131,7 @@ const handleEdit = (payload: DriverModel) => {
 
 const confirmDeleteDriver = (payload: DriverModel) => {
   store.setDriver(payload);
-  dialogStore.setDeleteDriverDialog(true);
+  dialogStore.setDeleteItemDialog(true);
 };
 
 const openNew = () => {

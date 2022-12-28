@@ -3,15 +3,15 @@ import { ref } from "vue";
 
 export const useDialogsStore = defineStore("dialogs", () => {
   const driverDialog = ref<boolean>(false);
-  const deleteDriverDialog = ref<boolean>(false);
-  const deleteDriversDialog = ref<boolean>(false);
+  const deleteItemDialog = ref<boolean>(false);
+  const deleteItemsDialog = ref<boolean>(false);
 
-  const setDeleteDriversDialog = (input: boolean) => {
-    deleteDriversDialog.value = input;
+  const setDeleteItemsDialog = (input: boolean) => {
+    deleteItemsDialog.value = input;
   };
 
-  const setDeleteDriverDialog = (input: boolean) => {
-    deleteDriverDialog.value = input;
+  const setDeleteItemDialog = (input: boolean) => {
+    deleteItemDialog.value = input;
   };
 
   const setDriverDialog = (input: boolean) => {
@@ -20,10 +20,10 @@ export const useDialogsStore = defineStore("dialogs", () => {
 
   return {
     driverDialog,
-    deleteDriverDialog,
-    deleteDriversDialog,
-    setDeleteDriversDialog,
+    deleteItemDialog,
+    deleteItemsDialog,
+    setDeleteItemsDialog,
     setDriverDialog,
-    setDeleteDriverDialog,
+    setDeleteItemDialog,
   };
 });
