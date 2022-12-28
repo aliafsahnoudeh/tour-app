@@ -2,15 +2,7 @@
 
 It's just a sample application to show how to leverage advanced [object oriented programming](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_programming), SOLID, compositions and component based design along Vue.js best practices to gain cleaner code structure, more maintainable and reusable code base also better code coherence.
 <br/>
-<br/>
-The exact same project written in React.js [here](https://github.com/aliafsahnoudeh/react-oop-solid).
-<br/>
-<br/>
-If you like to dive deeper into why I've created this repo please have a look at [this article](https://medium.com/@aliafsah1988/how-to-properly-use-typescript-oop-and-solid-in-modern-web-applications-e4ef88761154).
 
-## What does this application do?
-
-Our web application fetches a list of music bands. Each band has a list of time slots to choose. We have a concert hall which can host only one band at a time, so by selecting a time slot for a specific band, other band's time slots which overlap that time will be disabled. Also each band can perform once, so by selecting a time slot of a specific band, all of the other time slots of that band are going to be disabled.
 
 ## A summary of what I did and why, in case you were interested:
 
@@ -40,7 +32,6 @@ But as a summary I can mention these:
 
 - The app definitely should have a lot more unit tests. We can have a couple of E2E tests as well.
 
-- I tried to use a combination of global and scoped styling with SCSS. It could be implemented much nicer with more nesting and the usage of mixins. Also there are some components just for making a consistent and reusable styling for components, like Layout.tsx or CardLayout.tsx.
 
 ## Running the web client
 
@@ -56,14 +47,12 @@ And then
 yarn dev
 ```
 
-Application will start on port 3000
+Application will start on port 5000
 
-## Running the server
+## Running unit (and snapshot) tests
 
-Please run
+Please run:
 
 ```
-yarn server:start
+yarn test:unit:update
 ```
-
-A server will start listening on port 4000
