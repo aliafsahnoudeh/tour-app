@@ -20,4 +20,4 @@ dotnet watch run
 ```
 
 ## How to run unit tests
-- You need to install ![.NET Core Test Explorer](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer) on your VSCode.
+- You need to install [.NET Core Test Explorer](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer) on your VSCode.
