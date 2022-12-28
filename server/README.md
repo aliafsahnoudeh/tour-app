@@ -10,5 +10,14 @@ Since our presentation layer is very simple, I’ve prevented using MVP or MVVM 
 - By running this command you can run the application:
 
 ```
+cd Server
+```
+
+And then:
+
+```
 dotnet watch run
 ```
+
+## How to run unit tests
+- You need to install ![.NET Core Test Explorer](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer) on your VSCode.
